@@ -17,6 +17,7 @@ use Rollerworks\Component\Search\ConditionErrorMessage;
 use Rollerworks\Component\Search\ErrorList;
 use Rollerworks\Component\Search\Field\FieldConfig;
 use Rollerworks\Component\Search\Input\Validator;
+use Rollerworks\Component\Search\Value\PatternMatch;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
@@ -56,7 +57,7 @@ final class InputValidator implements Validator
 
     public function validate($value, string $type, $originalValue, string $path): bool
     {
-        if ($this->constraints === null) {
+        if ($this->constraints === null || $type === PatternMatch::class) {
             return true;
         }
 
